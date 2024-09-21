@@ -1,4 +1,4 @@
-//1) создаю три главных переменных, которые подключаются к основным html функционалом туду листа
+// подключение к html, классы
 const addTask = document.getElementById('add-task');
 const inputTask = document.getElementById('task-input');
 const allTasks = document.querySelector('.all-tasks');
@@ -7,21 +7,12 @@ const delAll = document.getElementById('delete-all-tasks')
 let tasks = [];
 let todoTasks = [];
 
-/*
-if (!localStorage.tasks) {
-  tasks = []
-} else {
-  tasks = JSON.parse(localStorage.getItem('tasks'))
-}*/
-
-
-//2) создаю функцию-конструктор, которая поможет создать много однотипных объектов
 function Task(task) {
   this.task = task;
   this.completed = false;
 }
 
-//6) создаю функцию, где будет сам таск
+//функции
 function createTask(description, index) {
   return `
         <div class="create-task ${description.completed ? 'checked' : ''}">
@@ -37,14 +28,14 @@ function createTask(description, index) {
 }
 
 
-//9) создаю функцию, которая будет фильтровать завершенные таски и опускать их вниз
+// завершенные задачи
 function filterTasks() {
   const activeTasks = tasks.length && tasks.filter(item => item.completed === false);
   const completedTasks = tasks.length && tasks.filter(item => item.completed === true);
   tasks = [...activeTasks, ...completedTasks];
 }
 
-//5) создаю функцию, в которой таски будут выводится на странице
+// вывод задач
 function showTasks() {
   allTasks.innerHTML = "";
   if (tasks.length === 0) {
@@ -64,12 +55,11 @@ function showTasks() {
 
 showTasks();
 
-//4) создаю функцию, где я буду обращаться к locale storage, чтобы хранить там таски
+//обращение к locale storage
 function storage() {
-  //localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
-//7) создаю функцию, которая будет отвечать за завершения таска
+//завершение задачи
 function completedTask(index) {
   tasks[index].completed = !tasks[index].completed;
   if (tasks[index].completed) {
@@ -88,7 +78,7 @@ function completedTask(index) {
 }
 
 
-//8) создаю функцию, которая будет отвечать за удаления таска
+// удаление задач
 function deletedTask(index) {
   todoTasks[index].classList.add('deleted')
   setTimeout(() => {
@@ -102,23 +92,22 @@ function deletedTask(index) {
 
 }
 
-// Редактирование таска
+// Редактирование
 function editTask(index) {
-  let curTask = todoTasks[index]; // выбранный таск
-  if(!curTask.classList.contains('edit')) { // При первом нажатии на кнопку редактирования, начинаем редактировать.
-    curTask.classList.add('edit'); // Добавляем класс 
-    curTask.querySelector('.task').innerHTML = `<input type="test" value="${tasks[index].task}">`; // Вместо задачи добавляем инпут с редактированием
-  } else { // При втором нажатии, когда класс `.edit` есть, мы сохраним
+  let curTask = todoTasks[index]; // выбранная задача
+  if(!curTask.classList.contains('edit')) { // редактирование
+    curTask.classList.add('edit'); // Добавить класс 
+    curTask.querySelector('.task').innerHTML = `<input type="test" value="${tasks[index].task}">`; // инпут с редактированием
+  } else {
     let newTask = curTask.querySelector('.task > input').value;
     tasks[index].task = newTask;
     curTask.querySelector('.task').innerText = newTask;
     curTask.classList.remove('edit');
-    // storage();
-  }
+      }
 }
 
 
-//3) создаю нажатие на кнопку добавить новый таск
+//клик добавить новую задачу
 addTask.addEventListener("click", () => {
   if (inputTask.value === '') {
     alertify.error('Enter a task!')
@@ -134,7 +123,7 @@ addTask.addEventListener("click", () => {
 
 });
 
-//10 создаю нажатие на кнопку, которая удаляет все таски
+// кнопка удалить все
 delAll.addEventListener("click", () => {
   setTimeout(() => {
     alertify.success('All tasks deleted!')

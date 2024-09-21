@@ -3,7 +3,6 @@
 body {
   background: url(.//14.jpg);
   font-family: Helvetica, sans-serif;
-  font-size: 15px;
 }
 
 h1 {
@@ -47,7 +46,7 @@ h2 {
   width: 95px;
   display: flex;
   justify-content: flex-end;
-  color: rgb(214, 112, 16);
+  color: rgb(165, 168, 168);
 }
 
 .add-task-button button {
@@ -62,18 +61,18 @@ h2 {
   display: inline-block;
   text-align: start;
   margin: 0em;
-  font: 400 19px system-ui;
+  font: 400 15px system-ui;
 }
 
 .add-task-button button:hover {
-  background-color: rgb(165, 168, 168)n;
+  background-color: rgb(165, 168, 168);
 }
 
 .create-task {
   display: flex;
   width: 500px;
   height: 50px;
-  background-color: rgb(193, 199, 193);
+  background-color: white;
   border-radius: 2px;
   border: 2px solid black;
   margin-bottom: 15px;
@@ -81,7 +80,7 @@ h2 {
 }
 
 .create-task.edit {
-  background-color: #90eee1;
+  background-color: #f0f197;
   border-color: black;
 }
 
@@ -98,7 +97,6 @@ h2 {
   text-align: start;
   margin: 0em;
   font: 400 11px system-ui;
-  content: "Редактировать";
 }
 
 .create-task.checked {
@@ -184,7 +182,7 @@ input[type='checkbox'] {
 }
 
 .action span.btn-edit:hover {
-  
+
   font-size: 15px;
 }
 
@@ -252,10 +250,8 @@ input-edit:focus {
   background-color: #dfe3e6;
   margin-right: 10px;
   height: 20px;
-  content: "Редактировать";
 }
 
 .btn-edit:hover {
   background-color: #979a9b;
-  content: "Редактировать";
 }
